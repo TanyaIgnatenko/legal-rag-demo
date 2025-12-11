@@ -23,7 +23,7 @@ class RAGDemo:
         
         try:
             genai.configure(api_key=gemini_api_key)
-            self.model = genai.GenerativeModel('gemini-pro')
+            self.model = genai.GenerativeModel('gemini-2.5-flash')
             print("✓ Gemini model initialized successfully")
         except Exception as e:
             print(f"⚠ Warning: Failed to initialize Gemini model: {str(e)}")
