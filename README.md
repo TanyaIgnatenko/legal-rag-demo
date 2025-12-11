@@ -2,7 +2,7 @@
 
 Legal RAG Assistant to help you analyze legal documents more easily and accurately.
 
-[![Live Demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-app.streamlit.app)
+[![Live Demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://legal-rag-demo.streamlit.app/)
 
 ## 📌 Goal
 
@@ -76,7 +76,7 @@ legal-rag-demo/
 
 ## 🎥 Demo
 
-**Live:** [Try it here](https://your-app.streamlit.app)
+**Live:** [Try it here](https://legal-rag-demo.streamlit.app/)
 
 ## 📝 License
 
