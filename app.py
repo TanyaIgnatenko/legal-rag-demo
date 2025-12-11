@@ -37,8 +37,9 @@ st.markdown("""
         padding: 0.5rem 1rem;
         border: none;
     }
-    .stButton>button:hover {
+    .stButton>button:hover, .stButton>button:disabled {
         background-color: #1e3a8a;
+        color: white;
     }
     .status-box {
         padding: 1rem;
@@ -61,6 +62,9 @@ st.markdown("""
         border-radius: 8px;
         margin: 0.5rem 0;
         cursor: pointer;
+    }
+    .example-card:hover, .example-card:disabled {
+        color: white;
     }
     </style>
 """, unsafe_allow_html=True)
