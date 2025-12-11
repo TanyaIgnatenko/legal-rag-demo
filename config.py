@@ -1,6 +1,7 @@
 """Configuration file for Legal RAG Demo"""
 
 import os
+import streamlit as st
 from pathlib import Path
 
 # Project paths
@@ -15,5 +16,8 @@ LLM_MODEL = "gemini-pro"
 MIN_CHUNK_SIZE = 100
 DEFAULT_TOP_K = 3
 
-# API Keys (for development only - use secrets in production)
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "your-api-key-here")
+# API Key - use secrets in production
+try:
+    GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+except:
+    GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "your-api-key-here")
