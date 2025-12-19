@@ -26,15 +26,15 @@ LLM (Gemini) + Context → Generate Answer
 
 ## 🔧 Tech Stack
 
-- **Backend:**
+**Backend:**
 - Python, FastAPI
 - PyMuPDF, Sentence Transformers, FAISS
 - Google Gemini API
 - Deployed on Railway
 
-- **LLM**: Google Gemini API
+**LLM**: Google Gemini API
 
-- **Frontend:**
+**Frontend:**
 - Next.js, React, TypeScript
 - Tailwind CSS
 - Deployed on Vercel
