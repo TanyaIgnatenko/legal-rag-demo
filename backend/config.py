@@ -18,7 +18,7 @@ DEFAULT_TOP_K = 3
 API_HOST = "0.0.0.0"
 API_PORT = 8000
 CORS_ORIGINS = [
-    "https://legal-rag-demo.vercel.app/",  # Production frontend
+    "https://legal-rag-demo.vercel.app",  # Production frontend
     "http://localhost:3000",  # Local frontend
 ]
 
