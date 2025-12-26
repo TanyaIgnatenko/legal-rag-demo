@@ -2,11 +2,15 @@
 
 AI-powered legal document analysis to help you understand legal documents more easily and accurately.
 
-[![Live Demo](https://img.shields.io/badge/deployed%20on-Vercel-black?style=flat&logo=vercel)](https://legal-rag-demo-tanyaignatenkos-projects.vercel.app/)
+[![Live Demo](https://img.shields.io/badge/deployed%20on-Vercel-black?style=flat&logo=vercel)](https://legal-rag-demo.vercel.app/)
 
-## Goal
+### 📸 Project Preview
 
-Demonstrate understanding of RAG architecture in Legal Tech context with a working prototype.
+![Main Screen](screenshots/main-screen.png)
+
+### Chat Interface
+
+![Chat Screen](screenshots/chat.png)
 
 ## 🏗️ Architecture
 
@@ -52,7 +56,7 @@ LLM (Gemini) + Context → Generate Answer
 
 ## 🎥 Demo
 
-**Live:** [Try it here](https://legal-rag-demo-tanyaignatenkos-projects.vercel.app)
+**Live:** [Try it here](https://legal-rag-demo.vercel.app/)
 
 ## 📝 License
 
