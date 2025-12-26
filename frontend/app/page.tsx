@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useRouter } from "next/navigation"
-import { FileText, Upload, Lock, Settings, Scale } from "lucide-react"
+import { FileText, Upload, Lock, Scale } from "lucide-react"
 import { useState, useRef } from "react"
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"
@@ -104,9 +104,6 @@ export default function HomePage() {
             <p className="text-sm text-gray-500">AI-powered legal document analysis</p>
           </div>
         </div>
-        <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-          <Settings className="w-5 h-5 text-gray-500" />
-        </button>
       </header>
 
       {/* Main Content */}

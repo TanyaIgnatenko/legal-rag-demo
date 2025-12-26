@@ -4,7 +4,7 @@ import type React from "react"
 
 import { useState, useRef, useEffect } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
-import { ArrowLeft, Settings, Send, Bot, Sparkles, User, ChevronDown, ChevronRight, Scale } from "lucide-react"
+import { ArrowLeft, Send, Bot, Sparkles, User, ChevronDown, ChevronRight, Scale } from "lucide-react"
 import ReactMarkdown from "react-markdown"
 
 interface Message {
@@ -29,7 +29,6 @@ export default function ChatPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const doc = searchParams.get("doc") || "gdpr.pdf"
-  const chunksCount = searchParams.get("chunks") || "26"
   const docName = doc
 
   const [messages, setMessages] = useState<Message[]>([])
@@ -144,9 +143,6 @@ export default function ChatPage() {
             </div>
           </div>
         </div>
-        <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
-          <Settings className="w-5 h-5 text-gray-500" />
-        </button>
       </header>
 
       {/* Chat Area */}
