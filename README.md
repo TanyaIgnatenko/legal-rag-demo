@@ -65,4 +65,4 @@ MIT
 ## 👤 Author
 
 **Tatyana Ignatenko**  
-[GitHub](https://github.com/TanyaIgnatenko) • [LinkedIn](www.linkedin.com/in/tatyana-ignatenko)
+[GitHub](https://github.com/TanyaIgnatenko) • [LinkedIn](https://www.linkedin.com/in/tatyana-ignatenko/)
