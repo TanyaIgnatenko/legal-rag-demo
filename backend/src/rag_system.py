@@ -23,23 +23,37 @@ class RAGDemo:
         
         try:
             genai.configure(api_key=gemini_api_key)
-            self.model = genai.GenerativeModel('gemini-2.5-flash')
+            self.model = genai.GenerativeModel('gemini-2.0-flash-exp')
             print("✓ Gemini model initialized successfully")
         except Exception as e:
             print(f"⚠ Warning: Failed to initialize Gemini model: {str(e)}")
             self.model = None
     
-    def setup(self, pdf_path: str):
+    def setup(self, pdf_path: str, use_precomputed: bool = False, precomputed_embedding_path: str = None):
         """
         System setup: parsing, chunking, indexing
         
         Args:
             pdf_path: path to PDF file
+            use_precomputed: if True, try to load precomputed embeddings
+            precomputed_embedding_path: path to precomputed embeddings file (.pkl)
         """
         print("=" * 60)
         print("RAG SYSTEM SETUP")
         print("=" * 60)
         
+        # Try to load precomputed embeddings if requested
+        if use_precomputed and precomputed_embedding_path:
+            if self.vector_store.load_precomputed(precomputed_embedding_path):
+                print("\n✓ Loaded precomputed embeddings - skipping parsing and chunking")
+                print("\n" + "=" * 60)
+                print("SYSTEM READY (from cache)")
+                print("=" * 60 + "\n")
+                return
+            else:
+                print("\n⚠ Failed to load precomputed embeddings, falling back to normal processing")
+        
+        # Normal processing: parse, chunk, embed
         print("\n1. Parsing PDF document...")
         text = self.parser.parse(pdf_path)
         print(f"   Extracted {len(text)} characters")

@@ -23,6 +23,34 @@ app.add_middleware(
 # Global RAG instance
 rag_system = RAGDemo(gemini_api_key=GEMINI_API_KEY)
 
+# Preload GDPR embeddings on startup
+@app.on_event("startup")
+async def startup_event():
+    """Preload GDPR embeddings when the app starts"""
+    try:
+        print("\n" + "=" * 70)
+        print("STARTUP: Preloading GDPR embeddings...")
+        print("=" * 70)
+        
+        gdpr_path = "example_data/gdpr.pdf"
+        embeddings_path = "example_data/gdpr_embeddings.pkl"
+        
+        if os.path.exists(gdpr_path):
+            rag_system.setup(
+                pdf_path=gdpr_path,
+                use_precomputed=True,
+                precomputed_embedding_path=embeddings_path
+            )
+            print("✓ GDPR embeddings preloaded and ready")
+        else:
+            print(f"⚠ Warning: GDPR file not found at {gdpr_path}")
+            print("  GDPR will be loaded on first request")
+        
+        print("=" * 70 + "\n")
+    except Exception as e:
+        print(f"⚠ Warning: Could not preload GDPR: {str(e)}")
+        print("  GDPR will be loaded on first request\n")
+
 class QuestionRequest(BaseModel):
     question: str
     top_k: int = 3
@@ -41,7 +69,12 @@ async def load_gdpr():
     global rag_system
     
     try:
-        rag_system.setup("example_data/gdpr.pdf")
+        # Setup with precomputed embeddings
+        rag_system.setup(
+            pdf_path="example_data/gdpr.pdf",
+            use_precomputed=True,
+            precomputed_embedding_path="example_data/gdpr_embeddings.pkl"
+        )
         chunks = len(rag_system.vector_store.chunks)
         
         return {
@@ -64,8 +97,12 @@ async def upload_document(file: UploadFile = File(...)):
             content = await file.read()
             f.write(content)
         
-        # Process with RAG system
-        rag_system.setup(temp_path)
+        # Process with RAG system (no precomputed embeddings for uploads)
+        rag_system.setup(
+            pdf_path=temp_path,
+            use_precomputed=False,
+            precomputed_embedding_path=None
+        )
         chunks = len(rag_system.vector_store.chunks)
         
         # Clean up
@@ -107,5 +144,6 @@ def health_check():
     return {
         "status": "healthy",
         "rag_initialized": rag_system is not None,
-        "document_loaded": rag_system.vector_store.chunks if rag_system else []
+        "document_loaded": len(rag_system.vector_store.chunks) > 0 if rag_system else False,
+        "num_chunks": len(rag_system.vector_store.chunks) if rag_system else 0
     }
